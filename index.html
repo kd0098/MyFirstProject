@@ -1,14 +1,35 @@
 <!doctype HTML>
 <html>
-<script src = "https://drive.google.com/open?id=1B4cxuJAihhikl6owel2CUMYgLUwQikGD"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<style src = "https://drive.google.com/open?id=1GEm2K0_FITn9oKXX36tV6FrGvUl0uyvy"></style>
- 
-<head>
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+
+<script src="C:\Users\karti\OneDrive\Desktop\script.js"></script>
+<link rel="stylesheet" href="C:\Users\karti\OneDrive\Desktop\stylesheet.css"/>
+
+
 <body ng-app = "myApp" ng-controller="myCtrl">
-  <p> anybody can dance!</p>
-  <input ng-model="abc"></input>
-  <p class="tobe">{{abc}}</p>
+
+<div class="quiz">
+	<h1> Quiz</h1>
+
+	<div ng-repeat="ques in questionPaper" ng-init="questionNo = $index" ng-hide="hideQuestion">
+		<p>{{ques.question}}</p>
+		<form>
+			<div ng-repeat="option in ques.option">	
+			<input type="radio" name={{option}} ng-model="answers[questionNo]" value={{option}}>{{option}}<br>
+			</div>
+		</form>
+	</div>
+	<br><br>
+
+	<form ng-submit="nextStep()">
+	<input type="submit" ng-hide="hideQuestion">
+	</form>	
+
+	<p ng-show="showScore">Your score is {{score}}</p>
+	<p ng-show="debug">Entered</p>
+</div>
+
+
 </body>
 </html>
