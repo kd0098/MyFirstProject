@@ -3,8 +3,56 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
 
-<script src="C:\Users\karti\OneDrive\Desktop\script.js"></script>
-<link rel="stylesheet" href="C:\Users\karti\OneDrive\Desktop\stylesheet.css"/>
+<style>
+body {
+	text-align: center;
+}
+</style>
+
+<script>
+	var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.questionPaper = [
+    {
+    	question: " this is first question",
+    	option:["first", "second", "third", "forth"],
+    	answer: "first"
+    },
+    {
+    	question: " this is second question",
+    	option:["first", "second", "third", "forth"],
+    	answer: "second"
+    }
+    ];
+    $scope.answers = [];
+    $scope.score = 0;
+    $scope.debug = false;
+    
+    hideQuestion = false;
+    showScore = false;
+    
+    $scope.questionVisibility = function() {
+    	$scope.hideQuestion = !$scope.hideQuestion;
+    }
+
+    $scope.evaluate = function() {
+    	len = $scope.questionPaper.length;
+    	count = 0;
+    	console.log(len);
+    	for(i=0; i<len; ++i) {
+    		if($scope.questionPaper[i].answer === $scope.answers[i])
+    			++count;
+    	}
+    	$scope.score = count;
+    }
+
+    $scope.nextStep = function() {
+    	$scope.showScore = true;
+    	$scope.questionVisibility();
+    	$scope.evaluate();
+    }
+});
+</script>
 
 
 <body ng-app = "myApp" ng-controller="myCtrl">
